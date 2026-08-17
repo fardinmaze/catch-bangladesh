@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-bangla: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  --font-heading: "Helvetica Neue", Helvetica, Arial, "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  --font-nav: "Manrope", "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  --font-serif: "Playfair Display", "Hind Siliguri", "Noto Sans Bengali", serif;
+
+  /* Brand red scale (Figma source of truth — differs from DESIGN_SYSTEM.md's #ED1C24, see project notes) */
+  --color-brand-50: #ffd8ca;
+  --color-brand-100: #ffbdae;
+  --color-brand-400: #ff5749;
+  --color-brand-500: #f40000;
+  --color-brand-600: #e10000;
+
+  /* Neutral/accent scale */
+  --color-accent-50: #f5f5f6;
+  --color-accent-100: #d9d9da;
+  --color-accent-600: #59595a;
+  --color-accent-700: #424243;
+  --color-accent-800: #2c2c2d;
+  --color-accent-900: #151516;
+  --color-accent-white: #f9f9f9;
+  --color-white: #fafafa;
+
+  /* Verification/status colors used across steps + archive tags */
+  --color-status-blue-100: #e6eff8;
+  --color-status-blue-500: #0057b8;
+  --color-status-green-100: #c2ffc8;
+  --color-status-green-500: #008610;
+  --color-status-green-600: #008939;
+  --color-status-rose-100: #ffedc2;
+  --color-status-rose-600: #bf0022;
+  --color-status-purple-600: #573fe0;
+
+  --radius-md: 4px;
+  --radius-lg: 12px;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-accent-900);
+  font-family: var(--font-bangla);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
