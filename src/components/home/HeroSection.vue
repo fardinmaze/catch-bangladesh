@@ -1,8 +1,8 @@
 <script setup>
 import heroBg from '@/assets/photos/hero-bg.png'
+import { useLang } from '@/stores/lang'
 
-const PLEDGE_PRIMARY = 'Take the Pledge'
-const PLEDGE_SECONDARY = 'Take the Pledge'
+const { t } = useLang()
 </script>
 
 <template>
@@ -14,24 +14,23 @@ const PLEDGE_SECONDARY = 'Take the Pledge'
       <p
         class="bg-brand-500 px-6 pb-1 pt-1.5 font-heading text-3xl font-medium leading-snug tracking-tight text-accent-50 sm:text-4xl lg:text-[48px]"
       >
-        থামুন → যাচাই করুন → তারপর শেয়ার করুন
+        {{ t.hero.slogan }}
       </p>
       <p class="max-w-[991px] font-heading text-lg leading-relaxed text-accent-700 sm:text-xl lg:text-2xl">
-        অনলাইনে যা দেখছেন, সবকিছুই সত্য নাও হতে পারে। কোনো খবর, ছবি, ভিডিও বা মেসেজ শেয়ার করার আগে
-        একটু থামুন। দেখে নিন তথ্যটি ঠিক কি না তারপর সিদ্ধান্ত নিন।
+        {{ t.hero.subtitle }}
       </p>
       <div class="flex items-center gap-3">
         <button
           type="button"
           class="rounded bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
         >
-          {{ PLEDGE_PRIMARY }}
+          {{ t.hero.pledgePrimary }}
         </button>
         <button
           type="button"
           class="rounded border border-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-brand-500"
         >
-          {{ PLEDGE_SECONDARY }}
+          {{ t.hero.pledgeSecondary }}
         </button>
       </div>
     </div>

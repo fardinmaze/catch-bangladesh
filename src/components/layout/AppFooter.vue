@@ -5,6 +5,9 @@ import linkedinIcon from '@/assets/icons/social/linkedin.svg'
 import snapchatIcon from '@/assets/icons/social/snapchat.svg'
 import flickrIcon from '@/assets/icons/social/flickr.svg'
 import instagramIcon from '@/assets/icons/social/instagram.svg'
+import { useLang } from '@/stores/lang'
+
+const { t } = useLang()
 
 const SOCIALS = [
   { icon: facebookIcon, name: 'Facebook' },
@@ -12,25 +15,6 @@ const SOCIALS = [
   { icon: snapchatIcon, name: 'Snapchat' },
   { icon: flickrIcon, name: 'Flickr' },
   { icon: instagramIcon, name: 'Instagram' },
-]
-
-const COLUMNS = [
-  {
-    title: 'প্ল্যাটফর্ম',
-    links: ['হোম', 'যাচাই করুন', 'শেখার উপকরণ', 'যাচাই আর্কাইভ', 'নির্ভরযোগ্য উৎস'],
-  },
-  {
-    title: 'মডিউল',
-    links: ['তথ্য বিভ্রান্তির পরিচিতি', 'ডিপ ফেক ও চিপ ফেক', 'তথ্য যাচাইয়ের টুল', 'সব মডিউল দেখুন →'],
-  },
-  {
-    title: 'সাহায্য ও সহায়তা',
-    links: ['সন্দেহজনক কনটেন্ট রিপোর্ট করুন', 'আমি ক্ষতির শিকার — সাহায্য চাই', 'প্রায়শই জিজ্ঞাসিত প্রশ্ন'],
-  },
-  {
-    title: 'সংস্থা সম্পর্কে',
-    links: ['আমাদের সম্পর্কে', 'প্রকল্প সম্পর্কে', 'গোপনীয়তা নীতি', 'ব্যবহারের শর্তাবলি'],
-  },
 ]
 </script>
 
@@ -41,11 +25,10 @@ const COLUMNS = [
         <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div class="flex flex-col gap-1">
             <p class="w-fit bg-brand-500 px-6 pb-1 pt-1.5 font-heading text-lg text-accent-50">
-              থামুন → যাচাই করুন → তারপর শেয়ার করুন
+              {{ t.footer.slogan }}
             </p>
             <p class="max-w-md font-heading text-sm leading-snug text-accent-50">
-              অনলাইনে যা দেখছেন, সবকিছুই সত্য নাও হতে পারে। কোনো খবর, ছবি, ভিডিও বা মেসেজ শেয়ার করার আগে
-              একটু থামুন। দেখে নিন তথ্যটি ঠিক কি না তারপর সিদ্ধান্ত নিন।
+              {{ t.footer.subtitle }}
             </p>
           </div>
           <div class="flex h-24 w-full max-w-xs items-center justify-center bg-brand-500 sm:w-80">
@@ -65,7 +48,7 @@ const COLUMNS = [
       </div>
 
       <div class="grid gap-8 border-t border-accent-700 pt-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div v-for="col in COLUMNS" :key="col.title">
+        <div v-for="col in t.footer.columns" :key="col.title">
           <p class="font-serif text-2xl">{{ col.title }}</p>
           <ul class="mt-4 flex flex-col gap-2 font-nav text-lg">
             <li v-for="link in col.links" :key="link">{{ link }}</li>
@@ -74,19 +57,19 @@ const COLUMNS = [
       </div>
 
       <div class="flex flex-col items-center gap-2 border-t border-accent-700 pt-10 text-center">
-        <p class="font-serif text-2xl">যোগাযোগ করুন</p>
+        <p class="font-serif text-2xl">{{ t.footer.contactHeading }}</p>
         <div class="flex flex-col items-center gap-2 font-nav text-lg">
-          <p>বাড়ি এসই(সি) ৫/বি (পুরাতন ৮), রোড ১৩৬, গুলশান ১, ঢাকা ১২১২</p>
-          <p>aab.mail@actionaid.org</p>
+          <p>{{ t.footer.address }}</p>
+          <p>{{ t.footer.email }}</p>
           <div class="flex flex-wrap items-center justify-center gap-6">
-            <p>(+৮৮০-২) ৫৫০৪৪৮৫১-৫৭</p>
-            <p>+৮৮০ ১৬৩১ ৬৫৪৩০৬ (হোয়াটসঅ্যাপ)</p>
+            <p>{{ t.footer.phone }}</p>
+            <p>{{ t.footer.whatsapp }}</p>
           </div>
         </div>
       </div>
 
       <p class="border-t border-accent-700 pt-6 text-center font-heading text-base">
-        © ২০২৬ ActionAid Bangladesh
+        {{ t.footer.copyright }}
       </p>
     </div>
   </footer>

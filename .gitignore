@@ -3,3 +3,6 @@ dist
 .DS_Store
 *.local
 .impeccable/
+
+# Original source PDFs — served copies (clean filenames) live in public/learning-materials/
+/assets/Learning Materials/

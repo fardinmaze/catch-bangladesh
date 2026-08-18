@@ -1,34 +1,81 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
+import { useRoute } from 'vue-router'
 import { useLang } from '@/stores/lang'
 import logoActionAid from '@/assets/logo-actionaid.png'
 
 const { isBn, setLang } = useLang()
+const route = useRoute()
 
 const NAV_LINKS = [
-  { key: 'home', href: '/', labelBn: 'হোম', labelEn: 'Home' },
-  { key: 'learn', href: '/learn', labelBn: 'শিখুন', labelEn: 'Learn' },
-  { key: 'resources', href: '/resources', labelBn: 'নির্ভরযোগ্য উৎস', labelEn: 'Resources' },
+  { key: 'home', to: '/', labelBn: 'হোম', labelEn: 'Home' },
+  { key: 'learn', to: '/learn', labelBn: 'শিখুন', labelEn: 'Learn' },
+  { key: 'resources', to: '/resources', labelBn: 'নির্ভরযোগ্য উৎস', labelEn: 'Resources' },
 ]
 
-const activeKey = 'home'
+const activeKey = computed(() => {
+  if (route.path === '/') return 'home'
+  if (route.path.startsWith('/learn')) return 'learn'
+  if (route.path.startsWith('/resources')) return 'resources'
+  return ''
+})
 
 const ctaLabel = computed(() => (isBn.value ? 'ফ্যাক্ট চেকার মডিউল' : 'Fact Checker Module'))
+
+const headerEl = useTemplateRef('headerEl')
+const hidden = ref(false)
+let lastY = 0
+let ticking = false
+
+function syncHeaderHeight() {
+  if (headerEl.value) {
+    document.documentElement.style.setProperty('--header-h', `${headerEl.value.offsetHeight}px`)
+  }
+}
+
+function handleScroll() {
+  if (ticking) return
+  ticking = true
+  requestAnimationFrame(() => {
+    const y = Math.max(window.scrollY, 0)
+    if (y < 40) {
+      hidden.value = false
+    } else if (y > lastY) {
+      hidden.value = true
+    } else if (y < lastY) {
+      hidden.value = false
+    }
+    lastY = y
+    ticking = false
+  })
+}
+
+onMounted(() => {
+  syncHeaderHeight()
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  window.addEventListener('resize', syncHeaderHeight)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', syncHeaderHeight)
+})
 </script>
 
 <template>
   <header
-    class="flex items-center justify-between gap-8 bg-white px-[42px] py-3 drop-shadow-[-4px_0px_5px_rgba(0,0,0,0.08)]"
+    ref="headerEl"
+    class="sticky top-0 z-50 flex items-center justify-between gap-8 bg-white px-[42px] py-3 drop-shadow-[-4px_0px_5px_rgba(0,0,0,0.08)] transition-transform duration-300"
+    :class="hidden ? '-translate-y-full' : 'translate-y-0'"
   >
-    <a href="/" class="shrink-0">
+    <RouterLink to="/" class="shrink-0">
       <img :src="logoActionAid" alt="ActionAid" class="h-5 w-auto object-contain" />
-    </a>
+    </RouterLink>
 
     <nav class="flex shrink-0 items-center gap-8 font-nav">
-      <a
+      <RouterLink
         v-for="link in NAV_LINKS"
         :key="link.key"
-        :href="link.href"
+        :to="link.to"
         class="whitespace-nowrap text-base leading-normal"
         :class="
           link.key === activeKey
@@ -37,7 +84,7 @@ const ctaLabel = computed(() => (isBn.value ? 'ফ্যাক্ট চেক�
         "
       >
         {{ isBn ? link.labelBn : link.labelEn }}
-      </a>
+      </RouterLink>
     </nav>
 
     <div class="flex shrink-0 items-center gap-8">

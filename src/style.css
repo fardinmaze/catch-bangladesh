@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-bangla: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
-  --font-heading: "Helvetica Neue", Helvetica, Arial, "Hind Siliguri", "Noto Sans Bengali", sans-serif;
-  --font-nav: "Manrope", "Hind Siliguri", "Noto Sans Bengali", sans-serif;
-  --font-serif: "Playfair Display", "Hind Siliguri", "Noto Sans Bengali", serif;
+  --font-bangla: "Noto Sans Bengali", sans-serif;
+  --font-heading: "Helvetica Neue", Helvetica, Arial, "Noto Sans Bengali", sans-serif;
+  --font-nav: "Manrope", "Noto Sans Bengali", sans-serif;
+  --font-serif: "Playfair Display", "Noto Sans Bengali", serif;
 
   /* Brand red scale (Figma source of truth — differs from DESIGN_SYSTEM.md's #ED1C24, see project notes) */
   --color-brand-50: #ffd8ca;
@@ -41,6 +41,10 @@ html,
 body,
 #app {
   height: 100%;
+}
+
+:root {
+  --header-h: 72px;
 }
 
 body {
