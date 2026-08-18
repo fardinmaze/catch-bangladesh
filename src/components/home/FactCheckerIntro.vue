@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
 import { useLang } from '@/stores/lang'
 
@@ -66,19 +67,19 @@ const STEPS = computed(() =>
       </div>
 
       <div class="flex items-center gap-3">
-        <button
-          type="button"
+        <RouterLink
+          to="/fact-checker"
           class="flex items-center gap-3 rounded bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
         >
           {{ t.factCheckerIntro.ctaPrimary }}
           <span class="h-4 w-4 [&>svg]:h-full [&>svg]:w-full" v-html="arrowUpRight" />
-        </button>
-        <button
-          type="button"
+        </RouterLink>
+        <RouterLink
+          to="/learn"
           class="rounded border border-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-brand-500"
         >
           {{ t.factCheckerIntro.ctaSecondary }}
-        </button>
+        </RouterLink>
       </div>
     </div>
   </section>

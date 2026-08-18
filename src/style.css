@@ -33,6 +33,12 @@
   --color-status-rose-600: #bf0022;
   --color-status-purple-600: #573fe0;
 
+  /* Fact-checker verdict states (FACT_CHECKER_SPEC.md §4) — distinct from the archive tag colors above */
+  --color-verdict-verified: #2e7d32;
+  --color-verdict-amber-bg: #f9a825;
+  --color-verdict-amber-text: #b26a00;
+  --color-verdict-info: #1565c0;
+
   --radius-md: 4px;
   --radius-lg: 12px;
 }

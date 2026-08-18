@@ -3,7 +3,6 @@ import HeroSection from '@/components/home/HeroSection.vue'
 import StatsBar from '@/components/home/StatsBar.vue'
 import PillarsSection from '@/components/home/PillarsSection.vue'
 import FactCheckerIntro from '@/components/home/FactCheckerIntro.vue'
-import CommunityArchivePreview from '@/components/home/CommunityArchivePreview.vue'
 import LearningMaterialsPreview from '@/components/home/LearningMaterialsPreview.vue'
 </script>
 
@@ -13,7 +12,6 @@ import LearningMaterialsPreview from '@/components/home/LearningMaterialsPreview
     <StatsBar />
     <PillarsSection />
     <FactCheckerIntro />
-    <CommunityArchivePreview />
     <LearningMaterialsPreview />
   </main>
 </template>

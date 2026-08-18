@@ -10,13 +10,13 @@ const route = useRoute()
 const NAV_LINKS = [
   { key: 'home', to: '/', labelBn: 'হোম', labelEn: 'Home' },
   { key: 'learn', to: '/learn', labelBn: 'শিখুন', labelEn: 'Learn' },
-  { key: 'resources', to: '/resources', labelBn: 'নির্ভরযোগ্য উৎস', labelEn: 'Resources' },
+  { key: 'contact', to: '/contact', labelBn: 'যোগাযোগ', labelEn: 'Contact' },
 ]
 
 const activeKey = computed(() => {
   if (route.path === '/') return 'home'
   if (route.path.startsWith('/learn')) return 'learn'
-  if (route.path.startsWith('/resources')) return 'resources'
+  if (route.path.startsWith('/contact')) return 'contact'
   return ''
 })
 
@@ -107,12 +107,12 @@ onUnmounted(() => {
         </button>
       </div>
 
-      <a
-        href="/fact-checker"
+      <RouterLink
+        to="/fact-checker"
         class="rounded whitespace-nowrap bg-brand-500 px-[18px] py-4 text-center text-sm font-medium leading-none text-accent-50"
       >
         {{ ctaLabel }}
-      </a>
+      </RouterLink>
     </div>
   </header>
 </template>

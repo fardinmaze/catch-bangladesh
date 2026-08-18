@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import checklistIcon from '@/assets/icons/checklist.svg?raw'
 import puzzleIcon from '@/assets/icons/puzzle.svg?raw'
 import marketingIcon from '@/assets/icons/marketing-advertising.svg?raw'
@@ -27,13 +28,13 @@ const PILLARS = computed(() => t.value.pillarsSection.pillars.map((pillar, i) =>
         <p class="font-heading text-3xl font-bold leading-snug tracking-tight text-brand-500 lg:text-[48px]">
           {{ t.pillarsSection.headline }}
         </p>
-        <button
-          type="button"
+        <RouterLink
+          to="/fact-checker"
           class="flex items-center gap-3 rounded bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
         >
           {{ t.pillarsSection.ctaButton }}
           <span class="h-4 w-4 [&>svg]:h-full [&>svg]:w-full" v-html="arrowUpRight" />
-        </button>
+        </RouterLink>
       </div>
 
       <div class="flex flex-col gap-6">
