@@ -1,7 +1,11 @@
-import { reactive, computed } from 'vue'
+import { reactive, computed, watchEffect } from 'vue'
 import { bn, en } from '@/i18n/content'
 
 const state = reactive({ lang: 'bn' })
+
+watchEffect(() => {
+  document.documentElement.setAttribute('lang', state.lang)
+})
 
 export function useLang() {
   const isBn = computed(() => state.lang === 'bn')

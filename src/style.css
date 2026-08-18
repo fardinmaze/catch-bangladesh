@@ -43,6 +43,14 @@
   --radius-lg: 12px;
 }
 
+/* English version uses Helvetica Neue everywhere (headings, nav, body copy, footer) */
+html[lang='en'] {
+  --font-bangla: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-nav: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 html,
 body,
 #app {
