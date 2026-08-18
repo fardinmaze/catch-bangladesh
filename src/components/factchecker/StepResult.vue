@@ -1,11 +1,11 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useLang } from '@/stores/lang'
 import { downloadResultCard } from '@/composables/useResultCard'
-import { parseUrl } from '@/composables/useLinkPreview'
+import { parseUrl, fetchLinkThumbnail } from '@/composables/useLinkPreview'
 
-const { t, isBn } = useLang()
+const { t } = useLang()
 
 const props = defineProps({
   verdict: { type: String, required: true },
@@ -14,20 +14,29 @@ const props = defineProps({
 defineEmits(['restart'])
 
 const VERDICT_META = {
-  verified: { key: 'verified', badge: '✓', textClass: 'text-[#2e7d32]', borderClass: 'border-[#2e7d32]', bgClass: 'bg-[#2e7d32]/5' },
+  verified: {
+    key: 'verified',
+    badge: '✓',
+    topBg: '#e8f8ea',
+    topText: '#2e7d32',
+    pillBg: '#2e7d32',
+    pillText: '#ffffff',
+  },
   needs_verification: {
     key: 'needsVerification',
     badge: '!',
-    textClass: 'text-[#b26a00]',
-    borderClass: 'border-[#f9a825]',
-    bgClass: 'bg-[#f9a825]/10',
+    topBg: '#fff6e0',
+    topText: '#b26a00',
+    pillBg: '#f9a825',
+    pillText: '#151516',
   },
   misleading_harmful: {
     key: 'misleadingHarmful',
     badge: '✕',
-    textClass: 'text-brand-500',
-    borderClass: 'border-brand-500',
-    bgClass: 'bg-brand-50/40',
+    topBg: '#fdeceb',
+    topText: '#f40000',
+    pillBg: '#f40000',
+    pillText: '#ffffff',
   },
 }
 
@@ -40,69 +49,89 @@ const contentTypeLabel = computed(() => {
 })
 
 const linkPreview = computed(() => parseUrl(props.session.content_url))
+const linkThumbnailUrl = ref(null)
 
-const resultColorHex = computed(() => {
-  if (props.verdict === 'verified') return '#2e7d32'
-  if (props.verdict === 'needs_verification') return '#f9a825'
-  return '#f40000'
-})
+watch(
+  linkPreview,
+  async (preview) => {
+    linkThumbnailUrl.value = null
+    if (!preview) return
+    const href = preview.href
+    const thumb = await fetchLinkThumbnail(href)
+    if (linkPreview.value?.href === href) linkThumbnailUrl.value = thumb
+  },
+  { immediate: true },
+)
 
 function handleDownload() {
   downloadResultCard({
-    colorHex: resultColorHex.value,
     badge: meta.value.badge,
+    topBg: meta.value.topBg,
+    topText: meta.value.topText,
+    pillBg: meta.value.pillBg,
+    pillText: meta.value.pillText,
     label: content.value.label,
-    summaryLine: `${t.value.factChecker.result.summaryLabel}: ${contentTypeLabel.value}`,
+    contentTypeLabel: contentTypeLabel.value,
     body: content.value.body,
     slogan: t.value.footer.slogan,
     filename: `catch-bangladesh-fact-check-${props.verdict}.png`,
     imageUrl: props.session.content_image_url,
     linkPreview: linkPreview.value,
+    linkThumbnailUrl: linkThumbnailUrl.value,
   })
 }
 </script>
 
 <template>
   <section class="flex flex-col gap-6">
-    <div class="flex flex-col items-center gap-3 rounded-lg border-2 px-6 py-10 text-center" :class="[meta.borderClass, meta.bgClass]">
-      <span class="text-6xl leading-none" :class="meta.textClass">{{ meta.badge }}</span>
-      <p class="font-heading text-2xl font-bold tracking-tight sm:text-[32px]" :class="meta.textClass">
-        {{ content.label }}
-      </p>
-      <p class="font-heading text-xs font-medium uppercase tracking-wide text-accent-600">{{ content.title }}</p>
-    </div>
+    <div class="flex flex-col overflow-hidden rounded-lg border border-accent-100">
+      <div class="flex items-center justify-center gap-2 py-3" :style="{ backgroundColor: meta.topBg }">
+        <span class="text-xl font-bold leading-none" :style="{ color: meta.topText }">{{ meta.badge }}</span>
+        <span class="font-heading text-lg font-semibold" :style="{ color: meta.topText }">{{ content.label }}</span>
+      </div>
 
-    <div class="flex flex-col gap-3">
-      <p class="font-heading text-sm text-accent-600">
-        {{ t.factChecker.result.summaryLabel }}: <span class="font-medium text-accent-900">{{ contentTypeLabel }}</span>
-      </p>
-
-      <div v-if="session.content_image_url || linkPreview" class="flex flex-col gap-1.5">
-        <p class="font-heading text-xs font-semibold uppercase tracking-wide text-accent-600">
-          {{ t.factChecker.result.yourContentLabel }}
-        </p>
+      <div class="relative h-72 w-full overflow-hidden bg-[#f5f5f6] sm:h-96">
         <img
           v-if="session.content_image_url"
           :src="session.content_image_url"
           alt=""
-          class="h-40 w-full rounded border border-accent-100 object-cover sm:w-64"
+          class="absolute inset-0 h-full w-full object-cover"
         />
-        <a
-          v-else-if="linkPreview"
-          :href="linkPreview.href"
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-3 rounded border border-accent-100 bg-[#f9fafa] px-4 py-3"
-        >
-          <span class="text-xl leading-none">🔗</span>
-          <div class="flex min-w-0 flex-col">
-            <p class="truncate font-heading text-sm font-medium text-accent-900">{{ linkPreview.hostname }}</p>
-            <p class="truncate font-heading text-xs text-accent-600">{{ linkPreview.href }}</p>
+        <img
+          v-else-if="linkPreview && linkThumbnailUrl"
+          :src="linkThumbnailUrl"
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <div v-else-if="linkPreview" class="absolute inset-0 flex items-center justify-center px-6">
+          <div class="flex max-w-full items-center gap-3 rounded border border-accent-100 bg-white px-4 py-3">
+            <span class="shrink-0 text-2xl leading-none">🔗</span>
+            <div class="flex min-w-0 flex-col">
+              <p class="truncate font-heading text-sm font-medium text-accent-900">{{ linkPreview.hostname }}</p>
+              <p class="truncate font-heading text-xs text-accent-600">{{ linkPreview.href }}</p>
+            </div>
           </div>
-        </a>
+        </div>
+        <div v-else class="absolute inset-0 flex items-center justify-center">
+          <span class="font-heading text-sm text-accent-600">{{ contentTypeLabel }}</span>
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/70" />
+
+        <div class="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2 px-4 py-4 sm:px-6 sm:py-6">
+          <span
+            class="rounded-full px-3.5 py-1 font-heading text-sm"
+            :style="{ backgroundColor: meta.pillBg, color: meta.pillText }"
+          >
+            {{ contentTypeLabel }}
+          </span>
+          <p class="font-heading text-xl font-bold leading-snug text-white sm:text-2xl">{{ content.body }}</p>
+        </div>
       </div>
 
-      <p class="font-heading text-lg leading-relaxed text-accent-700 sm:text-xl">{{ content.body }}</p>
+      <div class="flex items-center justify-center bg-accent-900 px-6 py-3">
+        <p class="font-heading text-base font-medium text-brand-500 sm:text-lg">{{ t.footer.slogan }}</p>
+      </div>
     </div>
 
     <div

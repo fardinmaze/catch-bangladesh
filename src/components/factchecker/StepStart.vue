@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { useLang } from '@/stores/lang'
-import { parseUrl } from '@/composables/useLinkPreview'
+import { parseUrl, fetchLinkThumbnail } from '@/composables/useLinkPreview'
 import OptionList from './OptionList.vue'
 import WizardNav from './WizardNav.vue'
 
@@ -27,6 +27,19 @@ function onUrlInput() {
 }
 
 const linkPreview = computed(() => parseUrl(urlDraft.value))
+const linkThumbnailUrl = ref(null)
+
+let debounceTimer = null
+watch(linkPreview, (preview) => {
+  clearTimeout(debounceTimer)
+  linkThumbnailUrl.value = null
+  if (!preview) return
+  const href = preview.href
+  debounceTimer = setTimeout(async () => {
+    const thumb = await fetchLinkThumbnail(href)
+    if (linkPreview.value?.href === href) linkThumbnailUrl.value = thumb
+  }, 400)
+})
 
 function onFileChange(e) {
   const file = e.target.files?.[0] || null
@@ -66,7 +79,13 @@ function onFileChange(e) {
           @input="onUrlInput"
         />
         <div v-if="linkPreview" class="flex items-center gap-3 rounded border border-accent-100 bg-[#f9fafa] px-4 py-3">
-          <span class="text-xl leading-none">🔗</span>
+          <img
+            v-if="linkThumbnailUrl"
+            :src="linkThumbnailUrl"
+            alt=""
+            class="h-12 w-12 shrink-0 rounded object-cover"
+          />
+          <span v-else class="text-xl leading-none">🔗</span>
           <div class="flex min-w-0 flex-col">
             <p class="truncate font-heading text-sm font-medium text-accent-900">{{ linkPreview.hostname }}</p>
             <p class="truncate font-heading text-xs text-accent-600">{{ linkPreview.href }}</p>
