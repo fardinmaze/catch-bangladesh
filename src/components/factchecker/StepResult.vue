@@ -147,14 +147,14 @@ function handleDownload() {
     <div class="flex flex-col gap-3">
       <button
         type="button"
-        class="rounded bg-brand-500 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-50"
+        class="rounded-button bg-brand-500 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-50"
         @click="handleDownload"
       >
         {{ t.factChecker.result.downloadCta }}
       </button>
       <button
         type="button"
-        class="rounded border border-accent-100 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-700"
+        class="rounded-button border border-accent-100 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-700"
         @click="$emit('restart')"
       >
         {{ t.factChecker.result.restartCta }}

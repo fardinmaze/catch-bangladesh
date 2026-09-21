@@ -87,7 +87,7 @@ onUnmounted(() => {
 <template>
   <header
     ref="headerEl"
-    class="sticky top-0 z-50 flex items-center justify-between gap-8 bg-white px-4 py-3 drop-shadow-[-4px_0px_5px_rgba(0,0,0,0.08)] transition-transform duration-300 sm:px-6 lg:px-[42px]"
+    class="sticky top-0 z-50 flex items-center justify-between gap-8 bg-white px-4 py-3 drop-shadow-[-4px_0px_5px_rgba(0,0,0,0.08)] transition-transform duration-300 sm:px-6 lg:px-[var(--page-gutter)]"
     :class="hidden ? '-translate-y-full' : 'translate-y-0'"
   >
     <RouterLink to="/" class="shrink-0">
@@ -132,7 +132,7 @@ onUnmounted(() => {
 
       <RouterLink
         to="/fact-checker"
-        class="rounded whitespace-nowrap bg-brand-500 px-[18px] py-4 text-center text-sm font-medium leading-none text-accent-50"
+        class="rounded-button whitespace-nowrap bg-brand-500 px-[18px] py-4 text-center text-sm font-medium leading-none text-accent-50"
       >
         {{ ctaLabel }}
       </RouterLink>
@@ -141,7 +141,7 @@ onUnmounted(() => {
     <div class="flex shrink-0 items-center gap-3 lg:hidden">
       <RouterLink
         to="/fact-checker"
-        class="rounded whitespace-nowrap bg-brand-500 px-3 py-2.5 text-center text-xs font-medium leading-none text-accent-50"
+        class="rounded-button whitespace-nowrap bg-brand-500 px-3 py-2.5 text-center text-xs font-medium leading-none text-accent-50"
       >
         {{ ctaLabel }}
       </RouterLink>

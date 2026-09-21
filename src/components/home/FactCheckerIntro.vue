@@ -25,7 +25,7 @@ const STEPS = computed(() =>
 
 <template>
   <section class="border-t border-brand-50 bg-white">
-    <div class="flex flex-col items-center gap-8 px-[42px] py-14">
+    <div class="flex flex-col items-center gap-8 px-[var(--page-gutter)] py-14">
       <div class="flex w-full flex-col items-start gap-1.5">
         <p class="bg-accent-900 px-3 py-2 font-heading text-base text-accent-50">{{ t.factCheckerIntro.eyebrow }}</p>
         <p class="font-heading text-3xl font-bold leading-snug tracking-tight text-brand-500 lg:text-[48px]">
@@ -69,14 +69,14 @@ const STEPS = computed(() =>
       <div class="flex items-center gap-3">
         <RouterLink
           to="/fact-checker"
-          class="flex items-center gap-3 rounded bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
+          class="flex items-center gap-3 rounded-button bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
         >
           {{ t.factCheckerIntro.ctaPrimary }}
           <span class="h-4 w-4 [&>svg]:h-full [&>svg]:w-full" v-html="arrowUpRight" />
         </RouterLink>
         <RouterLink
           to="/learn"
-          class="rounded border border-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-brand-500"
+          class="rounded-button border border-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-brand-500"
         >
           {{ t.factCheckerIntro.ctaSecondary }}
         </RouterLink>

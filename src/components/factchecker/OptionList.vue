@@ -12,7 +12,7 @@ defineEmits(['update:modelValue'])
       v-for="opt in options"
       :key="opt.value"
       type="button"
-      class="rounded border px-4 py-3.5 text-left font-heading text-base transition-colors"
+      class="rounded-button border px-4 py-3.5 text-left font-heading text-base transition-colors"
       :class="
         modelValue === opt.value
           ? 'border-brand-500 bg-brand-50/50 font-semibold text-brand-500'

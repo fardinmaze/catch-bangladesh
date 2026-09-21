@@ -41,6 +41,8 @@
 
   --radius-md: 4px;
   --radius-lg: 12px;
+  /* Brand guideline: every button is 8px — use `rounded-button` on anything that acts as a button */
+  --radius-button: 8px;
 }
 
 /* English version uses Helvetica Neue everywhere (headings, nav, body copy, footer) */
@@ -59,6 +61,15 @@ body,
 
 :root {
   --header-h: 72px;
+  /* Left/right page padding shared by the header, every home/learn section and the footer.
+     Stays at 42px on phones/tablets/small laptops; 156px from 1280px up, where there is room for it. */
+  --page-gutter: 42px;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-gutter: 156px;
+  }
 }
 
 body {

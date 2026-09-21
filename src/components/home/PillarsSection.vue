@@ -22,10 +22,11 @@ const META = [
 
 const PILLARS = computed(() => t.value.pillarsSection.pillars.map((pillar, i) => ({ ...pillar, ...META[i] })))
 
-// GSAP-driven crossfade: the right column is a tall (300vh) track; a sticky
+// GSAP-driven crossfade: the right column is a short (150vh) track; a sticky
 // viewport inside it pins in place (in sync with the left column's own
-// sticky position) while three stacked panels fade in/out across three
-// even scroll segments, so only one panel is ever visible at a time.
+// sticky position) while three stacked panels fade in/out, so only one panel
+// is ever visible at a time. The pin only lasts ~80vh of scrolling, so the
+// first change starts almost immediately and never looks stuck.
 const trackEl = ref(null)
 const panelEls = []
 let mm
@@ -42,19 +43,25 @@ onMounted(() => {
     const headerOffset = () =>
       parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0
 
+    // The sticky viewport is 70dvh tall and pins at the header's bottom edge, so it releases when the
+    // track's bottom reaches header + 70dvh — end the scrub exactly there so animation and pin finish together.
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: trackEl.value,
         start: () => `top top+=${headerOffset()}`,
-        end: 'bottom bottom',
-        scrub: 0.6,
+        end: () => `bottom top+=${headerOffset() + window.innerHeight * 0.7}`,
+        scrub: 0.4,
+        invalidateOnRefresh: true,
       },
     })
 
-    tl.to(panels[0], { autoAlpha: 0, y: -24, duration: 0.15 }, 0.28)
-      .to(panels[1], { autoAlpha: 1, y: 0, duration: 0.15 }, 0.28)
-      .to(panels[1], { autoAlpha: 0, y: -24, duration: 0.15 }, 0.66)
-      .to(panels[2], { autoAlpha: 1, y: 0, duration: 0.15 }, 0.66)
+    // Timeline is 1 long: panel 1 → 2 at 20–35%, panel 2 → 3 at 55–70%, then the last panel holds for the
+    // remaining 30% so it is readable before the section unpins.
+    tl.to(panels[0], { autoAlpha: 0, y: -24, duration: 0.15 }, 0.2)
+      .to(panels[1], { autoAlpha: 1, y: 0, duration: 0.15 }, 0.2)
+      .to(panels[1], { autoAlpha: 0, y: -24, duration: 0.15 }, 0.55)
+      .to(panels[2], { autoAlpha: 1, y: 0, duration: 0.15 }, 0.55)
+      .set({}, {}, 1)
 
     return () => tl.scrollTrigger?.kill()
   })
@@ -73,7 +80,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="grid gap-10 px-[42px] py-14 lg:py-0 lg:grid-cols-2">
+    <div class="grid gap-10 px-[var(--page-gutter)] py-14 lg:py-0 lg:grid-cols-2">
       <div class="flex flex-col items-start justify-center gap-3 lg:sticky lg:top-[var(--header-h)] lg:h-[70dvh]">
         <p class="bg-accent-700 px-3 py-1.5 font-heading text-base text-accent-50">
           {{ t.pillarsSection.eyebrow }}
@@ -83,7 +90,7 @@ onUnmounted(() => {
         </p>
         <RouterLink
           to="/fact-checker"
-          class="flex items-center gap-3 rounded bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
+          class="flex items-center gap-3 rounded-button bg-brand-500 px-[18px] py-4 font-heading text-sm font-medium leading-none text-accent-50"
         >
           {{ t.pillarsSection.ctaButton }}
           <span class="h-4 w-4 [&>svg]:h-full [&>svg]:w-full" v-html="arrowUpRight" />
@@ -97,16 +104,24 @@ onUnmounted(() => {
             <p class="font-heading text-xl font-medium tracking-tight text-brand-500 sm:text-2xl">
               {{ t.pillarsSection.subhead1 }}
             </p>
-            <p class="text-justify font-heading text-lg leading-relaxed text-accent-700">
-              {{ t.pillarsSection.body1 }}
+            <p
+              v-for="(para, i) in t.pillarsSection.body1"
+              :key="i"
+              class="text-justify font-heading text-lg leading-relaxed text-accent-700"
+            >
+              {{ para }}
             </p>
           </div>
           <div class="flex flex-col justify-center gap-3">
             <p class="font-heading text-xl font-medium tracking-tight text-brand-500 sm:text-2xl">
               {{ t.pillarsSection.subhead2 }}
             </p>
-            <p class="text-justify font-heading text-lg leading-relaxed text-accent-700">
-              {{ t.pillarsSection.body2 }}
+            <p
+              v-for="(para, i) in t.pillarsSection.body2"
+              :key="i"
+              class="text-justify font-heading text-lg leading-relaxed text-accent-700"
+            >
+              {{ para }}
             </p>
           </div>
 
@@ -137,15 +152,19 @@ onUnmounted(() => {
         </div>
 
         <!-- Desktop: tall scroll track with a sticky viewport crossfading one panel at a time -->
-        <div ref="trackEl" class="relative hidden lg:block lg:h-[300vh]">
+        <div ref="trackEl" class="relative hidden lg:block lg:h-[150vh]">
           <div class="sticky top-[var(--header-h)] flex h-[70dvh] items-center overflow-hidden">
             <div class="relative w-full">
               <div :ref="(el) => (panelEls[0] = el)" class="absolute inset-0 flex flex-col justify-center gap-3">
                 <p class="font-heading text-xl font-medium tracking-tight text-brand-500 sm:text-2xl">
                   {{ t.pillarsSection.subhead1 }}
                 </p>
-                <p class="text-justify font-heading text-lg leading-relaxed text-accent-700">
-                  {{ t.pillarsSection.body1 }}
+                <p
+                  v-for="(para, i) in t.pillarsSection.body1"
+                  :key="i"
+                  class="text-justify font-heading text-lg leading-relaxed text-accent-700"
+                >
+                  {{ para }}
                 </p>
               </div>
 
@@ -153,8 +172,12 @@ onUnmounted(() => {
                 <p class="font-heading text-xl font-medium tracking-tight text-brand-500 sm:text-2xl">
                   {{ t.pillarsSection.subhead2 }}
                 </p>
-                <p class="text-justify font-heading text-lg leading-relaxed text-accent-700">
-                  {{ t.pillarsSection.body2 }}
+                <p
+                  v-for="(para, i) in t.pillarsSection.body2"
+                  :key="i"
+                  class="text-justify font-heading text-lg leading-relaxed text-accent-700"
+                >
+                  {{ para }}
                 </p>
               </div>
 

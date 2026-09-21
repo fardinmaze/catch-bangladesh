@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useLang } from '@/stores/lang'
+import { CONTACT_HREF } from '@/data/contact'
 
 const { t } = useLang()
 </script>
@@ -15,9 +16,15 @@ const { t } = useLang()
 
     <div class="flex flex-col gap-2 rounded border border-accent-100 bg-[#f9fafa] px-4 py-4">
       <p class="font-heading text-base font-semibold text-accent-900">{{ t.helpPage.contactHeading }}</p>
-      <p class="font-heading text-base text-accent-700">{{ t.footer.email }}</p>
+      <p class="font-heading text-base text-accent-700">
+        <a :href="CONTACT_HREF.email" class="underline-offset-4 hover:underline">{{ t.footer.email }}</a>
+      </p>
       <p class="font-heading text-base text-accent-700">{{ t.footer.phone }}</p>
-      <p class="font-heading text-base text-accent-700">{{ t.footer.whatsapp }}</p>
+      <p class="font-heading text-base text-accent-700">
+        <a :href="CONTACT_HREF.whatsapp" target="_blank" rel="noopener" class="underline-offset-4 hover:underline">
+          {{ t.footer.whatsapp }}
+        </a>
+      </p>
     </div>
 
     <p class="font-heading text-sm text-accent-600">{{ t.helpPage.note }}</p>
@@ -25,13 +32,13 @@ const { t } = useLang()
     <div class="flex flex-col gap-3 sm:flex-row">
       <RouterLink
         to="/"
-        class="rounded border border-accent-100 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-700"
+        class="rounded-button border border-accent-100 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-700"
       >
         {{ t.helpPage.backHome }}
       </RouterLink>
       <RouterLink
         to="/fact-checker"
-        class="rounded bg-brand-500 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-50"
+        class="rounded-button bg-brand-500 px-6 py-3.5 text-center font-heading text-sm font-medium text-accent-50"
       >
         {{ t.helpPage.backFactChecker }}
       </RouterLink>

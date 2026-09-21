@@ -15,7 +15,7 @@ const STATS = computed(() => t.value.statsBar.map((stat, i) => ({ ...stat, ...ME
 </script>
 
 <template>
-  <section class="px-[42px] py-3">
+  <section class="px-[var(--page-gutter)] py-3">
     <div class="flex flex-col overflow-hidden rounded-xl sm:flex-row">
       <div
         v-for="(stat, i) in STATS"

@@ -36,7 +36,7 @@ const hasHarmFlag = computed(() => props.modelValue.length > 0)
         v-for="q in t.factChecker.harmGate.questions"
         :key="q.key"
         type="button"
-        class="flex items-start gap-3 rounded border px-4 py-3.5 text-left font-heading text-base transition-colors"
+        class="flex items-start gap-3 rounded-button border px-4 py-3.5 text-left font-heading text-base transition-colors"
         :class="
           modelValue.includes(q.key)
             ? 'border-brand-500 bg-brand-50/50 font-semibold text-brand-500'

@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
+import PdfViewer from '@/components/learn/PdfViewer.vue'
 import { useLang } from '@/stores/lang'
 import { getModuleBySlug } from '@/data/learningModules'
 
@@ -11,7 +13,7 @@ const mod = computed(() => getModuleBySlug(route.params.slug))
 </script>
 
 <template>
-  <main v-if="mod" class="flex flex-col gap-6 px-[42px] py-14">
+  <main v-if="mod" class="flex flex-col gap-6 px-[var(--page-gutter)] py-14">
     <RouterLink to="/learn" class="w-fit font-heading text-sm font-medium text-brand-500">
       {{ t.moduleDetail.back }}
     </RouterLink>
@@ -26,28 +28,31 @@ const mod = computed(() => getModuleBySlug(route.params.slug))
       </p>
     </div>
 
-    <a
-      :href="mod.pdf"
-      :download="mod.pdf.split('/').pop()"
-      class="flex w-fit items-center gap-3 rounded border border-brand-500 px-6 py-3 font-heading text-xs font-medium text-brand-500"
-    >
-      {{ t.moduleDetail.download }}
-    </a>
+    <div class="flex flex-wrap items-center gap-3">
+      <a
+        :href="mod.pdf"
+        :download="mod.pdf.split('/').pop()"
+        class="flex w-fit items-center gap-3 rounded-button border border-brand-500 px-6 py-3 font-heading text-xs font-medium text-brand-500"
+      >
+        {{ t.moduleDetail.download }}
+      </a>
 
-    <div class="h-[80vh] w-full border border-accent-100 bg-[#f9fafa]">
-      <object :data="mod.pdf" type="application/pdf" class="h-full w-full">
-        <embed :src="mod.pdf" type="application/pdf" class="h-full w-full" />
-        <p class="flex h-full flex-col items-center justify-center gap-3 p-6 text-center font-heading text-base text-accent-700">
-          {{ isBn ? 'আপনার ব্রাউজারে পিডিএফ দেখানো যাচ্ছে না।' : "Your browser can't display this PDF inline." }}
-          <a :href="mod.pdf" target="_blank" rel="noopener" class="font-medium text-brand-500 underline">
-            {{ isBn ? 'নতুন ট্যাবে খুলুন' : 'Open it in a new tab' }}
-          </a>
-        </p>
-      </object>
+      <!-- Opens the same PDF in its own tab: a full-window reader that works in every browser -->
+      <RouterLink
+        :to="{ name: 'learn-read', params: { slug: mod.slug } }"
+        target="_blank"
+        rel="noopener"
+        class="flex w-fit items-center gap-3 rounded-button bg-brand-500 px-6 py-3 font-heading text-xs font-medium text-white"
+      >
+        {{ t.moduleDetail.fullscreen }}
+        <span class="h-4 w-4 [&>svg]:h-full [&>svg]:w-full" v-html="arrowUpRight" />
+      </RouterLink>
     </div>
+
+    <PdfViewer :key="mod.slug" :src="mod.pdf" class="h-[80vh] w-full border border-accent-100" />
   </main>
 
-  <main v-else class="flex flex-col gap-4 px-[42px] py-14">
+  <main v-else class="flex flex-col gap-4 px-[var(--page-gutter)] py-14">
     <p class="font-heading text-xl text-accent-700">{{ t.moduleDetail.notFound }}</p>
     <RouterLink to="/learn" class="w-fit font-heading text-sm font-medium text-brand-500">
       {{ t.moduleDetail.back }}

@@ -16,14 +16,14 @@ defineEmits(['next', 'back'])
     <button
       v-if="canBack"
       type="button"
-      class="rounded border border-accent-100 px-6 py-3 font-heading text-sm font-medium text-accent-700"
+      class="rounded-button border border-accent-100 px-6 py-3 font-heading text-sm font-medium text-accent-700"
       @click="$emit('back')"
     >
       {{ t.factChecker.nav.back }}
     </button>
     <button
       type="button"
-      class="flex-1 rounded bg-brand-500 px-6 py-3 text-center font-heading text-sm font-medium text-accent-50 transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+      class="flex-1 rounded-button bg-brand-500 px-6 py-3 text-center font-heading text-sm font-medium text-accent-50 transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
       :disabled="!canNext"
       @click="$emit('next')"
     >

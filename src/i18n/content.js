@@ -3,11 +3,12 @@
 
 export const bn = {
   hero: {
-    slogan: 'থামুন → যাচাই করুন → তারপর শেয়ার করুন',
+    // Two separate red bars, as in Figma; the second line keeps its leading space on purpose (it is in the design).
+    sloganLines: ['থামুন → যাচাই করুন', ' → তারপর শেয়ার করুন'],
     subtitle:
       'অনলাইনে যা দেখছেন, সবকিছুই সত্য নাও হতে পারে। কোনো খবর, ছবি, ভিডিও বা মেসেজ শেয়ার করার আগে একটু থামুন। দেখে নিন তথ্যটি ঠিক কি না তারপর সিদ্ধান্ত নিন।',
+    mythCta: 'ভুল ধারণা বনাম সত্য জানুন',
     pledgePrimary: 'অঙ্গীকার করুন',
-    pledgeSecondary: 'অঙ্গীকার করুন',
   },
 
   statsBar: [
@@ -19,27 +20,32 @@ export const bn = {
 
   pillarsSection: {
     eyebrow: 'আমরা কী করছি, কেন করছি, এবং কীভাবে করছি',
-    headline: 'তথ্য বিভ্রান্তির বিরুদ্ধে একটি টেকসই, কমিউনিটি-চালিত উদ্যোগ',
+    headline: 'তথ্য বিভ্রান্তি প্রতিরোধে যুব ও কমিউনিটি-নেতৃত্বাধীন একটি উদ্যোগ',
     ctaButton: 'ফ্যাক্ট চেকার দেখুন',
-    subhead1: 'একটি বাংলাভাষী তথ্য যাচাই ও সচেতনতা প্ল্যাটফর্ম',
-    body1:
-      'এই প্ল্যাটফর্ম কক্সবাজারের তরুণ সম্প্রদায়ের জন্য তৈরি একটি ডিজিটাল হাতিয়ার যেখানে যে কেউ একটি খবর, ছবি, ভিডিও বা ফরোয়ার্ড করা মেসেজ কয়েকটি সহজ ধাপে যাচাই করতে পারেন, ভুল তথ্য চিনতে শিখতে পারেন, এবং প্রয়োজনে সন্দেহজনক কনটেন্ট রিপোর্ট করতে পারেন।',
-    subhead2: 'কারণ ভুল তথ্য এখানে বাস্তব ক্ষতি করে',
-    body2:
-      'এই প্ল্যাটফর্ম কক্সবাজারের তরুণ সম্প্রদায়ের জন্য তৈরি একটি ডিজিটাল হাতিয়ার — যেখানে যে কেউ একটি খবর, ছবি, ভিডিও বা ফরোয়ার্ড করা মেসেজ কয়েকটি সহজ ধাপে যাচাই করতে পারেন। এটি শুধু একটি ওয়েবসাইট নয় — প্রশিক্ষণ, ফেসবুক ক্যাম্পেইন ও স্থানীয় স্বেচ্ছাসেবকদের নিয়ে গড়া একটি পূর্ণাঙ্গ উদ্যোগের অংশ।',
-    pillarsHeading: 'তিনটি স্তম্ভের মাধ্যমে',
+    subhead1: 'বাংলায় তথ্য যাচাইয়ের জন্য একটি সচেতনতামূলক প্লাটফর্ম',
+    body1: [
+      'কক্সবাজারের যুবদেরকে সচেতন ডিজিটাল নাগরিক হিসেবে সক্ষম করে তোলার জন্য এই প্লাটফর্মটি একটি ডিজিটাল টুল হিসেবে কাজ করবে।',
+      'এই প্লাটফর্মের মাধ্যমে যুবরা সহজ কয়েকটি ধাপে কোনো সংবাদ, ছবি, ভিডিও বা ফরোয়ার্ড করা বার্তার সত্যতা যাচাই করতে পারবেন, তথ্য বিভ্রান্তি ও ভুল তথ্য শনাক্ত করার প্রয়োজনীয় দক্ষতা অর্জন করতে পারবেন এবং সন্দেহজনক বা বিভ্রান্তিকর কনটেন্ট চিহ্নিত করে সেগুলো রিপোর্ট করতে পারবেন।',
+      'এছাড়াও এই প্ল্যাটফর্মটি দায়িত্বশীল তথ্য ব্যবহার, নিরাপদ অনলাইন আচরণ এবং একটি অধিকতর তথ্য-সচেতন ও সহনশীল যুব সমাজ গড়ে তুলতে ভূমিকা রাখবে।',
+    ],
+    subhead2: 'কারণ ভুল তথ্য বিভ্রান্তি সৃষ্টি করে ও সম্প্রীতি বিনষ্ট করে',
+    body2: [
+      'এই প্ল্যাটফর্মটি কক্সবাজারের তরুণদের জন্য বাংলা ভাষায় তৈরি একটি সহজ ও ব্যবহারউপযোগী ডিজিটাল টুল, যেখানে যে কেউ কয়েকটি সহজ ধাপে কোনো সংবাদ, ছবি, ভিডিও বা ফরোয়ার্ড করা মেসেজের সত্যতা যাচাই করতে পারবেন।',
+      'এটি শুধুমাত্র একটি ওয়েবসাইট নয়। তথ্য যাচাইয়ের জন্য দক্ষতা বৃদ্ধি, ডিজিটাল সচেতনতা এবং দায়িত্বশীল তথ্যচর্চা নিশ্চিত করার একটি প্লাটফর্ম।',
+    ],
+    pillarsHeading: 'তিনটি কার্যক্রমের মাধ্যমে',
     pillars: [
       {
-        title: 'যাচাই প্ল্যাটফর্ম',
-        desc: 'ধাপে ধাপে চেকলিস্ট দিয়ে যে কেউ নিজে থেকেই তথ্য, ছবি বা ভিডিওর সত্যতা পরীক্ষা করতে পারবেন কোনো প্রযুক্তিগত দক্ষতা ছাড়াই',
+        title: 'তথ্য যাচাই',
+        desc: 'প্রযুক্তিগত দক্ষতা ছাড়াই যে কেউ নিজেই এই চেকলিস্ট দিয়ে ধাপে ধাপে তথ্য, ছবি বা ভিডিওর সত্যতা যাচাই করতে পারবেন',
       },
       {
         title: 'প্রশিক্ষণ',
-        desc: 'স্থানীয় তরুণদের সরাসরি প্রশিক্ষণ দেওয়া হয় যাতে তারা নিজেরাই ভুল তথ্য শনাক্ত করতে পারেন এবং তাদের পরিবার ও বন্ধুদের শেখাতে পারেন যাতে প্রকল্প শেষ হওয়ার পরও এই জ্ঞান কমিউনিটিতে টিকে থাকে',
+        desc: 'যুবরা যাতে তাদের নিজেদের ভুল শনাক্ত করতে পারে এবং তাদের কমিউনিটিকে সচেতন করতে পারে সে জন্য তাদেরকে সরাসরি প্রশিক্ষণ প্রদান করা হয়।',
       },
       {
         title: 'ফেসবুক ক্যাম্পেইন',
-        desc: 'যেখানে মানুষ সবচেয়ে বেশি ভুল তথ্যের মুখোমুখি হয়, সেখানেই সচেতনতা পৌঁছে দেওয়া হয় সহজ, শেয়ারযোগ্য ও বাংলায় তৈরি কনটেন্টের মাধ্যমে',
+        desc: 'সহজ, শেয়ারযোগ্য ও বাংলায় তৈরি কনটেন্টের মাধ্যমে তথ্য বিভ্রাটের সম্মুখীন ভুক্তভোগীকে সচেতন করা হয়।',
       },
     ],
   },
@@ -49,11 +55,11 @@ export const bn = {
     headline: 'সন্দেহ হচ্ছে? এখনই যাচাই করুন',
     subtitle: 'আপনার হাতের কাছেই একটি সহজ টুল — এক মিনিটে সত্য-মিথ্যা যাচাই করুন',
     para1:
-      'প্রতিদিন আমাদের সামনে আসে অসংখ্য পোস্ট, ছবি, ভিডিও আর ফরোয়ার্ড করা মেসেজ। সবকিছু সত্য নয়, আবার সবকিছু মিথ্যাও নয় — সমস্যা হলো, না যাচাই করে বোঝার উপায় নেই।',
+      'প্রতিদিন আমাদের সামনে অসংখ্য পোস্ট, ছবি, ভিডিও আর ফরোয়ার্ড করা মেসেজ আসে। না যাচাই করে সকল তথ্যের সত্যতা-অসত্যতা বোঝার উপায় নেই।',
     para2:
-      'তাই আমরা তৈরি করেছি একটি ধাপে ধাপে যাচাই চেকলিস্ট, যেখানে আপনি নিজেই — কোনো প্রযুক্তিগত জ্ঞান ছাড়াই — যেকোনো তথ্যের সত্যতা পরীক্ষা করতে পারবেন। উৎস কী, তথ্যটি কোথা থেকে এসেছে, ছবি বা ভিডিওটি আসল কি না, এবং শেয়ার করলে কারও ক্ষতি হবে কি না — সবকিছু একসাথে যাচাই হয়ে যাবে কয়েকটি সহজ প্রশ্নের মাধ্যমে।',
+      'এজন্য আমরা একটি চেকলিস্ট তৈরি করেছি, যার মাধ্যমে আপনি নিজেই ধাপে ধাপে, কোনো প্রযুক্তিগত জ্ঞান ছাড়াই যেকোনো তথ্যের সত্যতা যাচাই করতে পারবেন। তথ্যের উৎস কী, তথ্যটি কোথা থেকে এসেছে, ছবি বা ভিডিওটি আসল কি না, এবং শেয়ার করলে কারও ক্ষতি হবে কি না — কয়েকটি সহজ প্রশ্নের মাধ্যমে সবকিছু একসাথে যাচাই করতে পারবেন।',
     quote:
-      'কোনো ভুল উত্তর নেই, এটি একটি পরীক্ষা নয়<br />এটি আপনাকে সঠিক প্রশ্ন জিজ্ঞেস করতে সাহায্য করার একটি হাতিয়ার।',
+      'ভুল করার ভয় নেই, এটি কোনো পরীক্ষা নয়<br />এই প্লাটফর্মটি আপনাকে সঠিক প্রশ্ন এবং সিদ্ধান্ত গ্রহণ করতে সাহায্য করবে।',
     steps: [
       { title: 'নির্বাচন করুন', desc: 'আপনি কী যাচাই করতে চান পোস্ট, ছবি, ভিডিও নাকি মেসেজ' },
       { title: 'ধাপে ধাপে উত্তর দিন', desc: 'উৎস, তারিখ, প্রেক্ষাপট ও মিডিয়া সম্পর্কে কয়েকটি সহজ প্রশ্নের উত্তর দিন' },
@@ -79,6 +85,14 @@ export const bn = {
   moduleDetail: {
     back: '← সব মডিউলে ফিরুন',
     download: 'পিডিএফ ডাউনলোড করুন',
+    fullscreen: 'ফুল স্ক্রিনে দেখুন',
+    backToModule: '← মডিউলে ফিরুন',
+    openOriginal: 'মূল পিডিএফ খুলুন',
+    viewerLabel: 'পিডিএফ ডকুমেন্ট',
+    viewerLoading: 'পিডিএফ লোড হচ্ছে…',
+    viewerError: 'পিডিএফটি দেখানো যাচ্ছে না।',
+    viewerErrorHint: 'ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন, অথবা ডাউনলোড করে পড়ুন।',
+    pageLabel: 'পৃষ্ঠা',
     notFound: 'এই মডিউলটি খুঁজে পাওয়া যায়নি।',
   },
 
@@ -276,6 +290,19 @@ export const bn = {
     helpCalloutTitle: 'আপনি কি ঝুঁকিতে আছেন?',
     helpCalloutBody: 'কেউ যদি আপনাকে হয়রানি বা ক্ষতিকর কনটেন্ট দিয়ে লক্ষ্য করে থাকে, সাধারণ যোগাযোগের বদলে আমাদের সাহায্য পৃষ্ঠায় যান।',
     helpCta: 'সাহায্য নিন →',
+    form: {
+      heading: 'আমাদের লিখুন',
+      nameLabel: 'আপনার নাম',
+      namePlaceholder: 'পুরো নাম',
+      emailLabel: 'ইমেইল ঠিকানা',
+      emailPlaceholder: 'name@example.com',
+      messageLabel: 'বার্তা',
+      messagePlaceholder: 'আপনার প্রশ্ন, মতামত বা প্রস্তাব লিখুন',
+      send: 'পাঠান',
+      subject: 'CATCH বাংলাদেশ ওয়েবসাইট থেকে বার্তা',
+      sentNote:
+        'আপনার ইমেইল অ্যাপ খুলবে। সেখানে "পাঠান" চাপলেই বার্তাটি আমাদের কাছে পৌঁছাবে। অ্যাপ না খুললে যোগাযোগের কার্ডে দেওয়া ঠিকানায় সরাসরি ইমেইল করুন।',
+    },
   },
 
   footer: {
@@ -311,11 +338,11 @@ export const bn = {
 
 export const en = {
   hero: {
-    slogan: 'Stop → Verify → Then Share',
+    sloganLines: ['Stop → Verify', ' → Then Share'],
     subtitle:
       "Not everything you see online is true. Before you share a post, photo, video, or forwarded message, pause for a moment. Check whether it's accurate — then decide.",
+    mythCta: 'Learn about Myth vs Fact',
     pledgePrimary: 'Take the Pledge',
-    pledgeSecondary: 'Take the Pledge',
   },
 
   statsBar: [
@@ -327,14 +354,16 @@ export const en = {
 
   pillarsSection: {
     eyebrow: 'What we do, why we do it, and how',
-    headline: 'A sustainable, community-led initiative against misinformation',
+    headline: 'A sustainable, youth and community-led initiative against misinformation',
     ctaButton: 'Explore Fact Checker',
-    subhead1: 'A Bangla-language fact-checking and awareness platform',
-    body1:
+    subhead1: 'A fact-checking and awareness building platform in Bangla',
+    body1: [
       "This platform is a digital tool built for Cox's Bazar's youth community, where anyone can verify a news item, photo, video, or forwarded message in a few simple steps, learn to recognize misinformation, and report suspicious content when needed.",
+    ],
     subhead2: 'Because misinformation causes real harm here',
-    body2:
+    body2: [
       "This platform is a digital tool built for Cox's Bazar's youth community — where anyone can verify a news item, photo, video, or forwarded message in a few simple steps. It's not just a website — it's part of a complete initiative built around training, a Facebook campaign, and local volunteers.",
+    ],
     pillarsHeading: 'Through three pillars',
     pillars: [
       {
@@ -387,6 +416,14 @@ export const en = {
   moduleDetail: {
     back: '← Back to all modules',
     download: 'Download PDF',
+    fullscreen: 'Full screen',
+    backToModule: '← Back to module',
+    openOriginal: 'Open the original PDF',
+    viewerLabel: 'PDF document',
+    viewerLoading: 'Loading the PDF…',
+    viewerError: "The PDF couldn't be displayed.",
+    viewerErrorHint: 'Check your connection and try again, or download it to read.',
+    pageLabel: 'Page',
     notFound: "This module couldn't be found.",
   },
 
@@ -584,6 +621,19 @@ export const en = {
     helpCalloutTitle: 'Are you at risk?',
     helpCalloutBody: "If someone has targeted you with harassment or harmful content, go to our Help page instead of general contact.",
     helpCta: 'Get help →',
+    form: {
+      heading: 'Write to us',
+      nameLabel: 'Your name',
+      namePlaceholder: 'Full name',
+      emailLabel: 'Email address',
+      emailPlaceholder: 'name@example.com',
+      messageLabel: 'Message',
+      messagePlaceholder: 'Write your question, feedback or proposal',
+      send: 'Send',
+      subject: 'Message from the CATCH Bangladesh website',
+      sentNote:
+        'Your email app will open. Press Send there and your message will reach us. If nothing opens, email us directly at the address in the contact card.',
+    },
   },
 
   footer: {

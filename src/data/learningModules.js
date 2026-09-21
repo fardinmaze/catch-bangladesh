@@ -8,7 +8,7 @@ export const MODULES = [
     pdf: '/learning-materials/module-1-introduction-to-information-disorder.pdf',
     title: { bn: 'তথ্য বিভ্রান্তির পরিচিতি', en: 'Introduction to Information Disorder' },
     subtitle: {
-      bn: '"তথ্য বিভ্রান্তি" আসলে কী, কেন এটি গুরুত্বপূর্ণ, এবং কীভাবে এটি ব্যক্তি, সমাজ ও কমিউনিটিকে প্রভাবিত করে — তার একটি ভিত্তিগত পরিচিতি।',
+      bn: '"তথ্য বিভ্রান্তি" আসলে কী, কেন এটি গুরুত্বপূর্ণ, এবং কীভাবে এটি ব্যক্তি, সমাজ ও কমিউনিটিকে প্রভাবিত করে — তার একটি প্রাথমিক পরিচিতি।',
       en: 'What "information disorder" actually is, why it matters, and how it affects individuals, communities, and society — a foundational introduction.',
     },
   },
@@ -28,7 +28,7 @@ export const MODULES = [
     pdf: '/learning-materials/module-3-disinformation.pdf',
     title: { bn: 'ডিসইনফরমেশন', en: 'Disinformation' },
     subtitle: {
-      bn: 'পরিকল্পিতভাবে তৈরি ও ছড়ানো ভুয়া তথ্য — উদ্দেশ্যই থাকে বিভ্রান্ত করা। কীভাবে চিনবেন এবং কীভাবে সাড়া দেবেন।',
+      bn: 'পরিকল্পিতভাবে তৈরি ও ছড়ানো ভুয়া তথ্য — উদ্দেশ্যই থাকে বিভ্রান্ত করা। কীভাবে চিনবেন এবং কীভাবে প্রতিক্রিয়া করবেন।',
       en: 'False information created and spread deliberately, with the intent to deceive — how to recognize it and how to respond.',
     },
   },
@@ -68,7 +68,7 @@ export const MODULES = [
     pdf: '/learning-materials/module-7-clickbait.pdf',
     title: { bn: 'ক্লিকবেইট', en: 'Clickbait' },
     subtitle: {
-      bn: 'অতিরঞ্জিত বা উত্তেজক শিরোনাম দিয়ে ক্লিক করানোর ফাঁদ — ভেতরের তথ্য প্রায়ই শিরোনামের সঙ্গে মেলে না।',
+      bn: 'অতিরঞ্জিত বা প্ররোচণামূলক শিরোনাম দিয়ে ক্লিক করানোর ফাঁদ — ভেতরের তথ্য প্রায়ই শিরোনামের সঙ্গে মেলে না।',
       en: "Exaggerated or sensational headlines designed to get clicks — the content inside often doesn't match the headline.",
     },
   },

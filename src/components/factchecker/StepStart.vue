@@ -96,7 +96,7 @@ function onFileChange(e) {
       <div class="flex flex-col gap-2">
         <label class="font-heading text-sm text-accent-700">{{ t.factChecker.start.imageLabel }}</label>
         <label
-          class="flex w-fit cursor-pointer items-center gap-2 rounded border border-brand-500 px-4 py-2.5 font-heading text-sm font-medium text-brand-500"
+          class="flex w-fit cursor-pointer items-center gap-2 rounded-button border border-brand-500 px-4 py-2.5 font-heading text-sm font-medium text-brand-500"
         >
           {{ t.factChecker.start.imageButtonText }}
           <input type="file" accept="image/*" class="hidden" @change="onFileChange" />
