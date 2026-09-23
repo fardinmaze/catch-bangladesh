@@ -5,6 +5,7 @@ import linkedinIcon from '@/assets/icons/social/linkedin.svg'
 import snapchatIcon from '@/assets/icons/social/snapchat.svg'
 import flickrIcon from '@/assets/icons/social/flickr.svg'
 import instagramIcon from '@/assets/icons/social/instagram.svg'
+import { RouterLink } from 'vue-router'
 import { useLang } from '@/stores/lang'
 import { CONTACT_HREF } from '@/data/contact'
 
@@ -50,7 +51,24 @@ const SOCIALS = [
         <div v-for="col in t.footer.columns" :key="col.title">
           <p class="font-serif text-2xl">{{ col.title }}</p>
           <ul class="mt-4 flex flex-col gap-2 font-nav text-lg">
-            <li v-for="link in col.links" :key="link">{{ link }}</li>
+            <li v-for="link in col.links" :key="typeof link === 'string' ? link : link.label">
+              <RouterLink
+                v-if="typeof link === 'object' && link.to"
+                :to="link.to"
+                class="underline-offset-4 hover:underline"
+              >
+                {{ link.label }}
+              </RouterLink>
+              <a
+                v-else-if="typeof link === 'object'"
+                :href="CONTACT_HREF[link.href]"
+                v-bind="link.external ? { target: '_blank', rel: 'noopener' } : {}"
+                class="underline-offset-4 hover:underline"
+              >
+                {{ link.label }}
+              </a>
+              <template v-else>{{ link }}</template>
+            </li>
           </ul>
         </div>
       </div>

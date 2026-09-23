@@ -4,6 +4,30 @@ Newest first. Each entry says what changed, the decisions behind it, and what is
 
 ---
 
+## 2026-09-23
+
+### Changed
+
+**Footer (`src/i18n/content.js`, `src/components/layout/AppFooter.vue`, `src/data/contact.js`)**
+- Trimmed the footer columns to pages/actions that actually exist:
+  - **Platform**: removed "Verification Archive" and "Trusted Sources" (unbuilt pages) — kept Home, Verify, Learning Materials.
+  - **Help & Support**: removed "Report Suspicious Content", "I've Been Harmed — I Need Help", "Frequently Asked Questions" (unbuilt pages) — replaced with **Email Us** (`mailto:`) and **Emergency Call (999)** (`tel:999`, Bangladesh's national emergency line, already referenced on `/help`).
+  - **About the Organization**: replaced "About Us / About the Project / Privacy Policy / Terms of Use" with a single **About ActionAid** link that opens `https://actionaidbd.org/` (ActionAid Bangladesh's own site) in a new tab.
+- Wired up the remaining links so they are real, working navigation instead of plain text:
+  - Platform → `/`, `/fact-checker`, `/learn`.
+  - Modules → the three named modules now link to their detail pages (`/learn/introduction-to-information-disorder`, `/learn/deep-fake`, `/learn/tools-and-techniques-to-verify`); "View All Modules →" → `/learn`. Note: "Deepfake & Cheap Fake" covers two separate modules with no combined page, so it points at the Deep Fake module — flagged to the user, open to changing it to Cheap Fake instead.
+- `CONTACT_HREF` (`src/data/contact.js`) gained `emergency` (`tel:999`) and `actionAidOfficial` (`https://actionaidbd.org/`).
+- `AppFooter.vue` link rendering now branches three ways: plain string (not yet built), `{ label, href, external }` via `CONTACT_HREF` lookup (mailto/tel/external), or `{ label, to }` via `RouterLink` (internal routes) — kept backward compatible so future columns can stay plain text until they have somewhere to go.
+
+**Deployment (`vercel.json`, new file)**
+- Fixed a live-site 404 on the module PDF's "Full screen" button (`/learn/:slug/read`, opened as a real new-tab navigation). Vue Router runs in history mode and Vercel had no fallback, so any direct/new-tab load of a nested route 404'd. Added a catch-all rewrite to `index.html`; static files (JS/CSS/PDFs/images) are still served directly by Vercel's filesystem handling first, so this doesn't affect asset delivery. Takes effect on the next Vercel deploy.
+
+### Decisions worth remembering
+- Footer links stay plain (non-clickable) text until the page behind them actually exists — don't wire a link just to avoid a 404.
+- "Deepfake & Cheap Fake" in the footer's Modules column is a judgment call (points at Deep Fake) — revisit if the user wants it changed.
+
+---
+
 ## 2026-09-21
 
 ### Changed

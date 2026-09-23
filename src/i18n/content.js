@@ -312,19 +312,31 @@ export const bn = {
     columns: [
       {
         title: 'প্ল্যাটফর্ম',
-        links: ['হোম', 'যাচাই করুন', 'শেখার উপকরণ', 'যাচাই আর্কাইভ', 'নির্ভরযোগ্য উৎস'],
+        links: [
+          { label: 'হোম', to: '/' },
+          { label: 'যাচাই করুন', to: '/fact-checker' },
+          { label: 'শেখার উপকরণ', to: '/learn' },
+        ],
       },
       {
         title: 'মডিউল',
-        links: ['তথ্য বিভ্রান্তির পরিচিতি', 'ডিপ ফেক ও চিপ ফেক', 'তথ্য যাচাইয়ের টুল', 'সব মডিউল দেখুন →'],
+        links: [
+          { label: 'তথ্য বিভ্রান্তির পরিচিতি', to: { name: 'learn-detail', params: { slug: 'introduction-to-information-disorder' } } },
+          { label: 'ডিপ ফেক ও চিপ ফেক', to: { name: 'learn-detail', params: { slug: 'deep-fake' } } },
+          { label: 'তথ্য যাচাইয়ের টুল', to: { name: 'learn-detail', params: { slug: 'tools-and-techniques-to-verify' } } },
+          { label: 'সব মডিউল দেখুন →', to: '/learn' },
+        ],
       },
       {
         title: 'সাহায্য ও সহায়তা',
-        links: ['সন্দেহজনক কনটেন্ট রিপোর্ট করুন', 'আমি ক্ষতির শিকার — সাহায্য চাই', 'প্রায়শই জিজ্ঞাসিত প্রশ্ন'],
+        links: [
+          { label: 'ইমেইল করুন', href: 'email' },
+          { label: 'জরুরি কল (৯৯৯)', href: 'emergency' },
+        ],
       },
       {
         title: 'সংস্থা সম্পর্কে',
-        links: ['আমাদের সম্পর্কে', 'প্রকল্প সম্পর্কে', 'গোপনীয়তা নীতি', 'ব্যবহারের শর্তাবলি'],
+        links: [{ label: 'ActionAid সম্পর্কে', href: 'actionAidOfficial', external: true }],
       },
     ],
     contactHeading: 'যোগাযোগ করুন',
@@ -643,19 +655,31 @@ export const en = {
     columns: [
       {
         title: 'Platform',
-        links: ['Home', 'Verify', 'Learning Materials', 'Verification Archive', 'Trusted Sources'],
+        links: [
+          { label: 'Home', to: '/' },
+          { label: 'Verify', to: '/fact-checker' },
+          { label: 'Learning Materials', to: '/learn' },
+        ],
       },
       {
         title: 'Modules',
-        links: ['Introduction to Misinformation', 'Deepfake & Cheap Fake', 'Fact-Checking Tool', 'View All Modules →'],
+        links: [
+          { label: 'Introduction to Misinformation', to: { name: 'learn-detail', params: { slug: 'introduction-to-information-disorder' } } },
+          { label: 'Deepfake & Cheap Fake', to: { name: 'learn-detail', params: { slug: 'deep-fake' } } },
+          { label: 'Fact-Checking Tool', to: { name: 'learn-detail', params: { slug: 'tools-and-techniques-to-verify' } } },
+          { label: 'View All Modules →', to: '/learn' },
+        ],
       },
       {
         title: 'Help & Support',
-        links: ['Report Suspicious Content', "I've Been Harmed — I Need Help", 'Frequently Asked Questions'],
+        links: [
+          { label: 'Email Us', href: 'email' },
+          { label: 'Emergency Call (999)', href: 'emergency' },
+        ],
       },
       {
         title: 'About the Organization',
-        links: ['About Us', 'About the Project', 'Privacy Policy', 'Terms of Use'],
+        links: [{ label: 'About ActionAid', href: 'actionAidOfficial', external: true }],
       },
     ],
     contactHeading: 'Get in Touch',
